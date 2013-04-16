@@ -29,10 +29,17 @@ Look into `plugin_rgmwp.ini` file. A detailed description is coming soon.
 ##### !gmwp show
   Show all available weapons presets.
 
-##### !gmwp <id>
+##### !gmwp *id*
   Set a new weapon preset by id.  
   Example: `!gmwp 2` - Set `EU arms race` as new weapon preset
 
-##### !gmwp show <id>
+##### !gmwp *show id*
   Shows the defined arms of the specified weapons presets.
 
+## Support
+Support is only provided on bigbrotherbot.net forums on the following topic:  
+http://forum.bigbrotherbot.net/releases/random-gunmaster-weapon-preset-plugin-%28bf3%29/
+
+## Contrib
+- documented and reproducible *bugs* can be reported on the [issue tracker](https://github.com/ozon/b3-plugin-randomgmwp/issues).
+- *patches* are welcome. Send me a [pull request](http://help.github.com/send-pull-requests/).
