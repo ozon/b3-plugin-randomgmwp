@@ -79,3 +79,16 @@ gmwp: 20
         self.moderator.message_history = []
         self.moderator.says('!gmwp show')
         self.assertEqual('[0]Standard Weapon list, [1]Standard Weapon list REVERSED, [2]Light Weight, [3]Heavy Gear, [4]Pistol run!, [5]Snipers Heaven, [6]US arms race, [7]RU arms race, [8]EU arms race', self.moderator.message_history[0])
+
+    def test_cmd_gmwp_show_weapons(self):
+        self.moderator.connects('moderator')
+        self.moderator.message_history = []
+        self.moderator.says('!gmwp show 1')
+        self.assertEqual('Standard Weapon list REVERSED: JNG-90 M417 L86 LSAT SCAR-L AUG MTAR ACW-R MK3A1 Flechette SPAS-12 P90 PP-19 T44 M93 MP443 M320 LVG, Knife', self.moderator.message_history[0])
+
+    def test_cmd_gmwp_show_weapons_wrong_id(self):
+        self.moderator.connects('moderator')
+        self.moderator.message_history = []
+        self.moderator.says('!gmwp show 99')
+        self.assertEqual('Error: 99 is a invalid value.', self.moderator.message_history[0])
+
