@@ -1,8 +1,8 @@
-# RandomGunMasterWeaponPreset (Bf3) Plugin for [B3](http://www.bigbrotherbot.net/ "BigBrotherBot")
+# RandomGunMasterWeaponPreset (Bf3) Plugin for [B3](http://www.bigbrotherbot.net/ "BigBrotherBot") [![Build Status](https://api.travis-ci.org/ozon/b3-plugin-randomgmwp.png)](https://travis-ci.org/https://api.travis-ci.org/ozon/b3-plugin-randomgmwp/)
 A Plugin that sets at Round end a random weapon preset if the next map game mode is GunMaster.
 
 ### Requirements
-- latest BigBrotherBot(http://www.bigbrotherbot.net/ "BigBrotherBot")
+- latest [BigBrotherBot](http://www.bigbrotherbot.net/ "BigBrotherBot")
 - Battlefield3 Game server
 
 ## Usage
