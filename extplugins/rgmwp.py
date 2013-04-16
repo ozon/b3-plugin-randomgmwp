@@ -25,13 +25,14 @@ import b3.events
 from b3.parsers.bf3 import GUNMASTER_WEAPONS_PRESET_BY_INDEX, GUNMASTER_WEAPONS_PRESET_BY_NAME, MAP_NAME_BY_ID, GAME_MODES_NAMES
 from b3.parsers.frostbite2.protocol import CommandFailedError
 from random import randrange
+from ConfigParser import NoOptionError
 
 class RgmwpPlugin(Plugin):
     _adminPlugin = None
-    _nextGameMode = None
+    _random_enabled = True
 
     def onLoadConfig(self):
-        self.debug('Load')
+        self._load_settings()
 
     def onStartup(self):
         # check if bf3 game
@@ -52,7 +53,7 @@ class RgmwpPlugin(Plugin):
         self.registerEvent(b3.events.EVT_GAME_ROUND_PLAYER_SCORES)
 
     def onEvent(self, event):
-        if event.type == b3.events.EVT_GAME_ROUND_PLAYER_SCORES:
+        if event.type == b3.events.EVT_GAME_ROUND_PLAYER_SCORES and self._random_enabled:
             if self._get_rounds_left() > 0 or self.get_nextMap()[1] == 'GunMaster0':
                 _new_preset = self.setRandomRandomGunMasterWeaponPreset()
                 self.debug('Set weapon preset: %s' % _new_preset)
@@ -180,3 +181,11 @@ class RgmwpPlugin(Plugin):
                 func = self._getCmd(cmd)
                 if func:
                     self._adminPlugin.registerCommand(self, cmd, level, func, alias)
+
+    def _load_settings(self):
+        try:
+            self._random_enabled = self.config.getboolean('settings','enable_random')
+        except NoOptionError:
+            self.warning('conf "enable_random" not found, using default : yes')
+        except ValueError:
+            self.warning('conf "announce first kill" allow only yes or no as value')
