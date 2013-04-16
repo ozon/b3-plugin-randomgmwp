@@ -29,10 +29,10 @@ Look into `plugin_rgmwp.ini` file. A detailed description is coming soon.
 ##### !gmwp show
   Show all available weapons presets.
 
-##### !gmwp <id>
+##### !gmwp *id*
   Set a new weapon preset by id.  
   Example: `!gmwp 2` - Set `EU arms race` as new weapon preset
 
-##### !gmwp show <id>
+##### !gmwp *show id*
   Shows the defined arms of the specified weapons presets.
 
