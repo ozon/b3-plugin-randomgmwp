@@ -73,3 +73,9 @@ gmwp: 20
         self.p.setRandomRandomGunMasterWeaponPreset = Mock()
         self.moderator.says('!gmwp random')
         self.assertTrue(self.p.setRandomRandomGunMasterWeaponPreset.called)
+
+    def test_cmd_gmwp_show(self):
+        self.moderator.connects('moderator')
+        self.moderator.message_history = []
+        self.moderator.says('!gmwp show')
+        self.assertEqual('[0]Standard Weapon list, [1]Standard Weapon list REVERSED, [2]Light Weight, [3]Heavy Gear, [4]Pistol run!, [5]Snipers Heaven, [6]US arms race, [7]RU arms race, [8]EU arms race', self.moderator.message_history[0])
