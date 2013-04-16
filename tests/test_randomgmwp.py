@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../extplugins'))
 from unittest import TestCase
 from mock import patch, call, Mock
 from mockito import when, verify
+from tests import Bf3TestCase
 from b3.fake import FakeConsole, FakeClient
 from b3.config import XmlConfigParser, CfgConfigParser
 from b3.parsers.bf3 import GUNMASTER_WEAPONS_PRESET_BY_INDEX
@@ -14,32 +15,28 @@ from b3.cvar import Cvar
 from rgmwp import RgmwpPlugin
 
 
-class RgmwpPluginTest(TestCase):
+class RgmwpPluginTest(Bf3TestCase):
 
-    def tearDown(self):
-        if hasattr(self, "parser"):
-            del self.parser.clients
-            self.parser.working = False
+    @classmethod
+    def setUpClass(cls):
+        Bf3TestCase.setUpClass()
+        cls.sleep_patcher = patch.object(time, "sleep")
+        cls.sleep_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.sleep_patcher.stop()
 
     def setUp(self):
-        # create a B3 FakeConsole
-        self.parser_conf = XmlConfigParser()
-        self.parser_conf.loadFromString(r"""<configuration/>""")
-        self.console = FakeConsole(self.parser_conf)
-
-        # create our plugin instance
-        self.plugin_conf = CfgConfigParser()
-        self.p = RgmwpPlugin(self.console, self.plugin_conf)
-
-        # initialise the plugin
-        self.plugin_conf.loadFromString(r'''
-[commands]
+        Bf3TestCase.setUp(self)
+        self.conf = CfgConfigParser()
+        self.conf.loadFromString("""[commands]
 gmwp: 20
-        ''')
-
+        """)
+        self.p = RgmwpPlugin(self.console, self.conf)
         self.p.onLoadConfig()
-        self.p.console.game.gameName = 'bf3'
         self.p.onStartup()
+        self.superadmin.connects('superadmin')
 
 
     def test_setGunMasterWeaponPreset(self):
