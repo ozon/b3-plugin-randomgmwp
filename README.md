@@ -20,19 +20,19 @@ A Plugin that sets at Round end a random weapon preset if the next map game mode
 Look into `plugin_rgmwp.ini` file. A detailed description is coming soon.
 
 ### Commands
-!gmwp
+##### !gmwp
   Show the current weapon preset.
 
-!gmwp random
+##### !gmwp random
   Set a random weapon preset for the next round.
 
-!gmwp show
+##### !gmwp show
   Show all available weapons presets.
 
-!gmwp <id>
-  Set a new weapon preset by id.
+##### !gmwp <id>
+  Set a new weapon preset by id.  
   Example: `!gmwp 2` - Set `EU arms race` as new weapon preset
 
-!gmwp show <id>
+##### !gmwp show <id>
   Shows the defined arms of the specified weapons presets.
 
