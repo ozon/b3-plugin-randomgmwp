@@ -62,10 +62,8 @@ class RgmwpPlugin(Plugin):
         <random|show> - manage the GunMaster WeaponPreset
         """
 
-        _current_preset = self.console.getCvar('gunMasterWeaponsPreset').getInt()
-
-        # return current weapon preset
         if not data:
+            _current_preset = self.console.getCvar('gunMasterWeaponsPreset').getInt()
             client.message('Current GunMaster Preset: %s' % GUNMASTER_WEAPONS_PRESET_BY_INDEX[_current_preset][0])
         else:
             try:
